@@ -19,6 +19,13 @@ spec:
         ports:
         - name: web
           containerPort: 80
+        volumeMounts:
+          - name: nginx
+            mountPath: /usr/share/nginx/html
+      volumes:
+      - name: nginx
+        persistentVolumeClaim:
+          claimName: longhorn-nginx-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -36,6 +43,19 @@ spec:
     protocol: TCP
   selector:
     app: nginx-server
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: longhorn-nginx-pvc
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 2Gi
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
