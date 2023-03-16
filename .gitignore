@@ -1,0 +1,6 @@
+apps/n8n/postgres-secret.yaml
+apps/n8n/n8n-secret.yaml
+apps/.DS_Store
+.DS_Store
+apps/n8n/LICENSE
+apps/n8n/README.md

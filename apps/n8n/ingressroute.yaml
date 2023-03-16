@@ -1,0 +1,19 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations: 
+    kubernetes.io/ingress.class: traefik-external
+  name: n8n
+  namespace: n8n
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`n8n.beertini.com`)
+      priority: 10
+      services:
+        - name: n8n
+          port: 80
+  tls:
+    secretName: local-beertini-com-tls
