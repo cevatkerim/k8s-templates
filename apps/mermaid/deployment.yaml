@@ -53,6 +53,6 @@ spec:
       priority: 10
       services:
         - name: mermaid-svc
-          port: 80
+          port: 8000
   tls:
     secretName: local-beertini-com-tls
